@@ -1,0 +1,152 @@
+{
+  "version": 2,
+  "extra_config": {},
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "HelloService",
+  "port": 5000,
+  "endpoints": [
+    {
+      "endpoint": "/hello",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/hello",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/merge",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/merge/a",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "/merge/b",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/filter/deny",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/filter",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "deny": [
+            "a",
+            "b"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/filter/allow",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/filter",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "allow": [
+            "a",
+            "b"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/groups",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/group/a",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "group": "group-example-a",
+          "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "/group/b",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "group": "group-example-b",
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/mapping",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/hello",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "mapping": {
+            "message": "message_map"
+          },
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}
