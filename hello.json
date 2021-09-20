@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "extra_config": {},
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "TestService",
+  "port": 8080,
+  "endpoints": [
+    {
+      "endpoint": "/hello",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {
+        "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+          "maxRate": 1,
+          "clientMaxRate": 0,
+          "strategy": "ip"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/hello",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}
