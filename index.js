@@ -41,6 +41,24 @@ app.get('/group/b', (req, res) => {
     });
 });
 
+app.get('/target', (req, res) => {
+    res.json({
+        'api-version': '1.0',
+        'data': {
+            'a': 'data-a',
+            'b': 'data-b',
+            'c': 'data-c'
+        }
+    });
+});
+
+app.get('/collection', (req, res) => {
+    res.json([
+        {'a': 'data-a'},
+        {'b': 'data-b'}
+    ]);
+});
+
 app.listen(3000, () => {
     console.log('hello-server running on: http://localhost:3000');
 });

@@ -1,8 +1,6 @@
 {
   "version": 2,
   "extra_config": {},
-  "timeout": "3000ms",
-  "cache_ttl": "300s",
   "output_encoding": "json",
   "name": "HelloService",
   "port": 5000,
@@ -144,6 +142,44 @@
           "mapping": {
             "message": "message_map"
           },
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/target",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/target",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "target": "data",
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/collection",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/collection",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://localhost:3000"
+          ],
+          "is_collection": true,
           "disable_host_sanitize": false
         }
       ]
